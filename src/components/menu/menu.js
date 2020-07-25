@@ -13,18 +13,59 @@ class Menu extends Component {
         description:null,
         price:null,
     }
+    componentDidMount(){
+        const data=JSON.parse(localStorage.getItem('Authorization'));
+        console.log(data);
+        console.log(this.props);
+        if(data===null){
+         this.props.history.push('/Login');  
+        }
+    }
     handleClick = () => {
-        const myheaders = {headers:{'Content-Type':"application/json;charset=UTF-8",'Authorization':"Token e5bb2dd91c1e8f2fa7eb4c7fd5410d0883a847ac"}}
-        console.log(this.state);
-        axios.post('http://parthsujalshah1.pythonanywhere.com/api/food/food/3/2/',this.state,myheaders)
-        .then(res=> {
-            console.log(res);
-        }).catch((e)=> console.log(e));
+     
         
+        const key=JSON.parse(localStorage.getItem('Authorization'));
+        
+        const config = {
+            headers: { 'Content-Type':"application/json",
+            'Authorization':`${key}` }
+        };
+        axios.get('http://parthsujalshah1.pythonanywhere.com/api/restaurant/restaurant/',config )
+          .then((data)=>{
+               const id=data.data[0].id;
+               console.log(id);
+              if(this.state.category==="Breakfast"){
+                  axios.post(`http://parthsujalshah1.pythonanywhere.com/api/food/food/${id}/6/` , this.state , config)
+              .then(res=> {
+                  console.log(res);
+              })
+              .catch((e)=> 
+              console.log(e)
+              );
+              }else if(this.state.category==="Lunch"){
+                  axios.post(`http://parthsujalshah1.pythonanywhere.com/api/food/food/${id}/9/` , this.state , config)
+              .then(res=> {
+                  console.log(res);
+              }).catch((e)=> console.log(e));
+              }else if(this.state.category==="Dinner"){
+                  axios.post(`http://parthsujalshah1.pythonanywhere.com/api/food/food/${id}/10/` , this.state , config)
+              .then(res=> {
+                  console.log(res);
+              }).catch((e)=> console.log(e));
+              }else{
+                  axios.post(`http://parthsujalshah1.pythonanywhere.com/api/food/food/${id}/11/` , this.state , config)
+              .then(res=> {
+                  console.log(res);
+              }).catch((e)=> console.log(e));
+              }
+          });    
+    }
+
+    onUpdate = (id)=>{
+
     }
 
      onChange = (e) => {
-        
         this.setState({
             [e.target.id]:e.target.value
         })
@@ -212,7 +253,6 @@ class Menu extends Component {
                                 <div className="card-stacked">
                                     <div className="card-content" id="menu_cards">
                                         <h5>English Breakfast <p className="right"><a href="#modal2" className="modal-trigger"><i className="material-icons green-text">edit</i></a><a href="#"><i className="material-icons red-text">delete</i></a></p></h5>
-                                        
                                         <h6>Rs 18.9</h6>
                                         <p className="grey-text">I am a very simple card. I am good at containing small bits of information.I am a very simple card. I am good at containing small bits of information.</p>
                                     </div>  
@@ -468,7 +508,7 @@ class Menu extends Component {
                 </div>
                 </div>
                 <div className="modal-footer">
-                    <a href="#!" className=" waves-effect waves-green btn-flat">Save</a>
+                    <a href="#!" className=" waves-effect waves-green btn-flat" onClick={()=>{this.onUpdate()}}>Save</a>
                     <a href="#!" className="modal-close waves-effect waves-green btn-flat">close</a>
                 </div>
             </div>

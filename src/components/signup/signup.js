@@ -1,8 +1,37 @@
 import React , {Component } from 'react';
 import './signup.css';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
 
 class Signup extends Component {
+    state = {
+        username:null,
+        email:null,
+        password1:null,
+        password2:null,
+        name:null,
+        description:null,
+        address:null
+    }
+    handleChange = (e) => {
+        this.setState({
+            [e.target.id]:e.target.value
+        })
+    }
+    handleClick= async() => {
+        console.log(this.state);
+        try{
+            const res1 = await axios.post('http://parthsujalshah1.pythonanywhere.com/api/user/rest-auth/registration/',JSON.stringify({username:this.state.username, password1: this.state.password1, password2: this.state.password2, email: this.state.email}),{"headers":{'Content-Type':'application/json'}});
+            console.log(res1)
+            const key = res1.data.key;
+            const token = `Token ${key}`;
+            localStorage.setItem("Authorization",JSON.stringify(token));
+            const res2 = await axios.post('http://parthsujalshah1.pythonanywhere.com/api/restaurant/restaurant/',JSON.stringify({description: this.state.description, address: this.state.address, name: this.state.name}),{"headers":{'Content-Type':'application/json', 'Authorization':`${token}`}});
+            console.log(res2);
+        }catch(e){
+            console.log(e);
+        }
+    }
     render(){
         return(
             <div className="Signup">
@@ -23,30 +52,48 @@ class Signup extends Component {
                                 
                                 <div className="row">
                                     <div className="input-field col s12">
-                                        <input id="last_name" type="text" className="validate" />
-                                        <label for="last_name">Username</label>
+                                        <input id="username" type="text" className="validate" onChange={this.handleChange} />
+                                        <label for="username">Username</label>
                                     </div>
                                 </div>
                                 <div className="row">
                                     <div className="input-field col s12">
-                                    <input id="email" type="email" className="validate" />
+                                    <input id="email" type="email" className="validate" onChange={this.handleChange} />
                                     <label for="email">Email</label>
                                     </div>
                                 </div>
                                 <div className="row">
+                                    <div className="input-field col s12">
+                                        <input id="name" type="text" className="validate" onChange={this.handleChange} />
+                                        <label for="name">Restaurant Name</label>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="input-field col s12">
+                                        <input id="description" type="text" className="validate" onChange={this.handleChange} />
+                                        <label for="description">Description</label>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="input-field col s12">
+                                        <input id="address" type="text" className="validate" onChange={this.handleChange} />
+                                        <label for="address">Location</label>
+                                    </div>
+                                </div>
+                                <div className="row">
                                 <div className="input-field col s12">
-                                    <input id="password" type="password" className="validate" />
-                                    <label for="password">Password</label>
+                                    <input id="password1" type="password" className="validate" onChange={this.handleChange} />
+                                    <label for="password1">Password</label>
                                 </div>
                                 </div>
                                 <div className="row">
                                     <div className="input-field col s12">
-                                    <input id="confirmpassword" type="password" className="validate" />
-                                    <label for="password">Confirm Password</label>
+                                    <input id="password2" type="password" className="validate" onChange={this.handleChange} />
+                                    <label for="password2">Confirm Password</label>
                                     </div>
                                 </div>
                                 
-                                <Link to="/login" className="waves-effect waves-light btn black">SignUp</Link>
+                                <Link to="/login" className="waves-effect waves-light btn black" onClick={this.handleClick}>SignUp</Link>
                                 <p>Already have an account ?&nbsp; <Link to="/login">Signin</Link></p>
                                 
                                 <br/>
