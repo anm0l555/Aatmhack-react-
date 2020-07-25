@@ -1,0 +1,23 @@
+
+.log_nav{
+    border-bottom: solid black ;
+}
+.signin{
+    margin-top: 17%!important;
+}
+
+@media  screen and (max-width:473px){
+    .brand-logo{
+        font-size:18px;
+       
+    }
+}
+
+.log_or{
+    position: relative;
+    bottom: 2rem;
+}
+
+#log_row{
+    margin-bottom: 0;
+}

@@ -1,0 +1,28 @@
+.dash_land_img{
+    background: url(./img/platter-2009590_1920.jpg);
+    height: 40vh!important;
+    
+}
+.dash_land_img h2{
+    margin-top: 0;
+    padding-top: 150px;
+    padding-left:30px ;
+}
+
+#dashboardcard1{
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+}
+
+.dash_h_tab{
+    padding-left:    30px;
+}
+.dash_qrimg{
+    height: 70px!important;
+}
+.dash_card2{
+    border-radius: 10px!important;
+    padding: 1rem;
+    border: solid thin black;
+}

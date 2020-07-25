@@ -1,0 +1,47 @@
+
+  
+  .landing .ind_head{
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif!important;
+   
+      margin-top: 0!important;
+  }
+  
+  .landing #brand-logo{
+      border-bottom: solid white;
+      margin-top: 4rem;
+      border-radius: 0.5rem;
+      
+  }
+  .landing .ind_img{
+      position: relative;
+      margin-top: -5rem;
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 104vh!important;
+      width: 100%;  
+    }
+
+    .landing .ind_log{
+        position: relative;
+        margin-top: -25%!important;
+        
+    }
+    
+    .landing #ind_log_btn {
+        border: solid white;
+        border-radius: 0.5rem;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+.landing .ind_log  #ind_log_btn:hover{
+        background: black!important;
+        border-color: black;
+        color: white;
+    }
+
+    .landing .ind_about{
+        position: relative;
+        margin-top: 25%;
+        text-align: justify;
+    }
+

@@ -1,0 +1,51 @@
+.menu_bkg{
+    background-image: url(./restaurant-449952_1920.jpg)!important;
+    background-size: cover;
+    height: 30vh;
+}
+#order_mid{
+    margin-right: 2px!important;
+}
+
+
+#menu_editbtn{
+    border: solid white  thin;
+    border-radius: 5px;
+    margin-top: 100px;
+    margin-left: 45%;
+}
+#menu_editbtn:hover{
+    background: black!important;
+    border-color: black;
+    color: white;
+}
+.menu_tabs{
+    margin-left: 10%!important;
+    margin-right: 10%!important;
+}
+.tabs .tab a{
+    color:#000!important;
+} /*Black color to the text*/
+
+.tabs .tab a:hover {
+    background-color:#eee!important;
+    color:#000!important;
+} /*Text color on hover*/
+
+.tabs .tab a.active {
+    background-color:#fff!important;
+    color:#000!important;
+} /*Background and text color when a tab is active*/
+
+.tabs .indicator {
+    background-color:#000!important;
+}
+
+#menu_cards{
+    padding-top: 0!important;
+    padding-bottom: 0!important;
+}
+.menu_cardimg{
+    width: 150px!important;
+    height: 170px!important;
+}
